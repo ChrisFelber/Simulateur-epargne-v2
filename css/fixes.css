@@ -1,0 +1,15 @@
+.controls-card .control-icon {
+  display: none;
+}
+
+.controls-card .control-row {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+}
+
+@media (max-width: 640px) {
+  .controls-card .control-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+}
