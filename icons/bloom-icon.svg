@@ -1,9 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
   <title id="title">Bloom</title>
-  <rect width="512" height="512" rx="112" fill="#84E184"/>
-  <g fill="none" stroke="#32CD32" stroke-width="24" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M120 155v176c0 48 34 82 80 82s80-34 80-82-34-82-80-82c-32 0-58 16-72 39"/>
-    <path d="M314 249v164"/>
-    <path d="M314 309c0-38 26-64 60-64s60 26 60 64v104"/>
-  </g>
+  <rect width="512" height="512" fill="#84E184"/>
+  <path fill="#1E7B1E" d="M158 100c0-17 13-30 30-30s30 13 30 30v112c27-25 63-40 104-40 87 0 154 65 154 151s-67 151-154 151c-90 0-164-67-164-158V100Zm164 128c-52 0-92 40-92 95s40 95 92 95 92-40 92-95-40-95-92-95Z"/>
+  <path fill="#32CD32" d="M208 351c35-64 89-91 147-80-7 65-49 111-121 128-21-15-29-31-26-48Z"/>
+  <path fill="none" stroke="#1E7B1E" stroke-width="12" stroke-linecap="round" d="M231 389c21-42 53-72 96-93"/>
 </svg>
