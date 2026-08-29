@@ -7,7 +7,7 @@
   <title>Simulateur d’investissement</title>
   <link rel="stylesheet" href="css/styles.css?v=20260830-1">
   <link rel="stylesheet" href="css/theme.css?v=20260830-1">
-  <link rel="stylesheet" href="css/fixes.css?v=20260830-1">
+  <link rel="stylesheet" href="css/fixes.css?v=20260830-2">
 </head>
 <body>
   <div class="app-shell">
@@ -17,7 +17,7 @@
           <span class="brand-spark" aria-hidden="true">✦</span>
           <h1 data-i18n="title">Simulateur d’investissement</h1>
         </div>
-        <p class="intro" data-i18n="intro">Découvre comment le temps, tes versements et le rendement peuvent faire évoluer ton portefeuille.</p>
+        <p class="intro" data-i18n="intro">Découvre comment le temps, tes versements et le rendement peuvent faire évoluer ton épargne.</p>
       </div>
       <div class="header-actions" aria-label="Préférences de l’application">
         <button id="language-button" class="icon-button language-button" type="button" aria-label="Changer de langue">FR</button>
@@ -28,7 +28,7 @@
     <main class="simulator-stack">
       <section class="hero-card" aria-label="Résultats de la simulation">
         <div class="hero-decoration" aria-hidden="true">✦</div>
-        <p class="hero-kicker" data-i18n="estimatedValue">Valeur estimée de ton portefeuille</p>
+        <p class="hero-kicker" data-i18n="estimatedValue">Valeur estimée de ton épargne</p>
         <p class="hero-value" id="portfolio-value">CHF 0</p>
         <div class="hero-stats">
           <div class="hero-stat">
@@ -50,15 +50,15 @@
         <div class="chart-heading">
           <div>
             <p class="card-label" data-i18n="evolution">Évolution</p>
-            <h2 data-i18n="chartTitle">Évolution de ton portefeuille</h2>
+            <h2 data-i18n="chartTitle">Évolution de ton épargne</h2>
           </div>
         </div>
         <div class="chart-legend" aria-label="Légende du graphique">
-          <span><i class="legend-swatch portfolio"></i><span data-i18n="portfolio">Portefeuille</span></span>
+          <span><i class="legend-swatch portfolio"></i><span data-i18n="portfolio">Épargne</span></span>
           <span><i class="legend-swatch invested"></i><span data-i18n="chartInvested">Capital investi</span></span>
         </div>
         <div class="chart-wrap">
-          <svg id="portfolio-chart" class="portfolio-chart" viewBox="0 0 800 340" role="img" aria-label="Graphique de l’évolution de ton portefeuille"></svg>
+          <svg id="portfolio-chart" class="portfolio-chart" viewBox="0 0 800 340" role="img" aria-label="Graphique de l’évolution de ton épargne"></svg>
         </div>
       </section>
 
@@ -145,7 +145,7 @@
 
   <script src="js/config.js?v=20260830-1"></script>
   <script src="js/simulation.js?v=20260830-1"></script>
-  <script src="js/i18n.js?v=20260830-1"></script>
+  <script src="js/i18n.js?v=20260830-2"></script>
   <script src="js/chart.js?v=20260830-2"></script>
   <script src="js/theme.js?v=20260830-1"></script>
   <script src="js/app.js?v=20260830-1"></script>
