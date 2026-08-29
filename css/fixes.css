@@ -7,6 +7,10 @@
   gap: 0;
 }
 
+.controls-card .control-row + .control-row {
+  border-top: 0;
+}
+
 @media (max-width: 640px) {
   .controls-card .control-row {
     grid-template-columns: minmax(0, 1fr);
