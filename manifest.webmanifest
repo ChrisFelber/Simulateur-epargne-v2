@@ -8,7 +8,7 @@
   "theme_color": "#32CD32",
   "icons": [
     {
-      "src": "icons/bloom-icon.svg",
+      "src": "icons/bloom-app-v2.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
