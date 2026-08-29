@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">Bloom</title>
+  <rect width="512" height="512" rx="112" fill="#84E184"/>
+  <g fill="none" stroke="#32CD32" stroke-width="24" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M120 155v176c0 48 34 82 80 82s80-34 80-82-34-82-80-82c-32 0-58 16-72 39"/>
+    <path d="M314 249v164"/>
+    <path d="M314 309c0-38 26-64 60-64s60 26 60 64v104"/>
+  </g>
+</svg>
