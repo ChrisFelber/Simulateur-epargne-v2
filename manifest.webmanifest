@@ -1,0 +1,17 @@
+{
+  "name": "Bloom",
+  "short_name": "Bloom",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#84E184",
+  "theme_color": "#32CD32",
+  "icons": [
+    {
+      "src": "icons/bloom-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
