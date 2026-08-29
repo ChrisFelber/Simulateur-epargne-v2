@@ -5,9 +5,9 @@
   var locales = { fr: 'fr-CH', de: 'de-CH', en: 'en-CH' };
   var translations = {
     fr: {
-      documentTitle: 'Simulateur d’investissement',
+      documentTitle: 'Bloom',
       eyebrow: 'Projection d’investissement',
-      title: 'Simulateur d’investissement',
+      title: 'Bloom',
       intro: 'Découvre comment le temps, tes versements et le rendement peuvent faire évoluer ton épargne.',
       preferencesAria: 'Préférences de l’application',
       languageAria: 'Changer de langue',
@@ -53,9 +53,9 @@
       yearsAxis: 'Années'
     },
     de: {
-      documentTitle: 'Anlagesimulator',
+      documentTitle: 'Bloom',
       eyebrow: 'Anlageprojektion',
-      title: 'Anlagesimulator',
+      title: 'Bloom',
       intro: 'Entdecke, wie Zeit, deine Einzahlungen und die Rendite deine Ersparnisse verändern können.',
       preferencesAria: 'App-Einstellungen',
       languageAria: 'Sprache wechseln',
@@ -101,9 +101,9 @@
       yearsAxis: 'Jahre'
     },
     en: {
-      documentTitle: 'Investment simulator',
+      documentTitle: 'Bloom',
       eyebrow: 'Investment projection',
-      title: 'Investment simulator',
+      title: 'Bloom',
       intro: 'See how time, your contributions and returns could grow your savings.',
       preferencesAria: 'Application preferences',
       languageAria: 'Change language',
