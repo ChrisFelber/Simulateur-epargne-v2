@@ -61,7 +61,7 @@
     var isMobile = window.innerWidth <= 640;
     var width = 800;
     var height = isMobile ? 380 : 340;
-    var padding = isMobile ? { top: 48, right: 22, bottom: 92, left: 118 } : { top: 20, right: 24, bottom: 42, left: 64 };
+    var padding = isMobile ? { top: 48, right: 30, bottom: 102, left: 118 } : { top: 20, right: 24, bottom: 42, left: 64 };
     var innerWidth = width - padding.left - padding.right;
     var innerHeight = height - padding.top - padding.bottom;
     var series = simulation.series;
@@ -110,18 +110,20 @@
     if (isMobile) {
       var yearStep = getNiceYearStep(maxYears);
       var year = 0;
-      var xLabelY = height - 48;
+      var xLabelY = height - 58;
       while (year < maxYears) {
+        if (year !== 0 && maxYears - year < yearStep * 0.6) break;
         var mobileXLabel = createSvgElement('text', { x: x(year), y: xLabelY, 'text-anchor': year === 0 ? 'start' : 'middle', class: 'chart-axis-label chart-axis-label-x' });
         mobileXLabel.textContent = String(year);
         gridGroup.appendChild(mobileXLabel);
         year += yearStep;
       }
-      var finalXLabel = createSvgElement('text', { x: x(maxYears), y: xLabelY, 'text-anchor': 'end', class: 'chart-axis-label chart-axis-label-x' });
+
+      var finalXLabel = createSvgElement('text', { x: x(maxYears) - 2, y: xLabelY, 'text-anchor': 'end', class: 'chart-axis-label chart-axis-label-x' });
       finalXLabel.textContent = String(Math.round(maxYears));
       gridGroup.appendChild(finalXLabel);
 
-      var yearsLabel = createSvgElement('text', { x: x(maxYears), y: height - 16, 'text-anchor': 'end', class: 'chart-unit-label chart-axis-unit-x' });
+      var yearsLabel = createSvgElement('text', { x: x(maxYears) - 2, y: height - 14, 'text-anchor': 'end', class: 'chart-unit-label chart-axis-unit-x' });
       yearsLabel.textContent = t('yearsAxis');
       gridGroup.appendChild(yearsLabel);
     } else {
