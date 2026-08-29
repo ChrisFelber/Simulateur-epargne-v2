@@ -11,9 +11,79 @@
   border-top: 0;
 }
 
+.trust-panel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid rgba(50, 205, 50, .16);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(246, 253, 246, .96), rgba(238, 249, 238, .96));
+  box-shadow: 0 12px 30px rgba(35, 91, 46, .05);
+}
+
+.trust-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: rgba(50, 205, 50, .10);
+  color: #1e7b1e;
+}
+
+.trust-icon svg {
+  width: 21px;
+  height: 21px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.trust-panel p {
+  margin: 0;
+  color: var(--muted);
+  font-size: .76rem;
+  line-height: 1.45;
+  font-weight: 650;
+}
+
+:root[data-theme="dark"] .trust-panel {
+  background: linear-gradient(180deg, rgba(24, 40, 29, .96), rgba(20, 34, 24, .96));
+  border-color: rgba(132, 225, 132, .18);
+}
+
+:root[data-theme="dark"] .trust-icon {
+  background: rgba(50, 205, 50, .13);
+  color: #84e184;
+}
+
 @media (max-width: 640px) {
   .controls-card .control-row {
     grid-template-columns: minmax(0, 1fr);
     gap: 0;
+  }
+
+  .trust-panel {
+    padding: 12px 14px;
+    border-radius: 16px;
+  }
+
+  .trust-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+  }
+
+  .trust-icon svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  .trust-panel p {
+    font-size: .7rem;
   }
 }
