@@ -84,3 +84,53 @@
     white-space: normal;
   }
 }
+
+@media (max-width: 640px) {
+  /* Header actions behave like one coherent pair of pills. */
+  .header-actions {
+    gap: 7px;
+    align-items: center;
+  }
+
+  .header-actions .icon-button,
+  .header-actions .language-button {
+    width: 46px;
+    min-width: 46px;
+    height: 40px;
+    padding: 0;
+    border: 1px solid rgba(30,123,30,.12);
+    border-radius: 999px;
+    background: rgba(255,255,255,.96);
+    color: #10151d;
+    box-shadow: 0 6px 16px rgba(31,72,39,.07);
+    font-size: .82rem;
+    font-weight: 850;
+    line-height: 1;
+  }
+
+  :root[data-theme="dark"] .header-actions .icon-button,
+  :root[data-theme="dark"] .header-actions .language-button {
+    background: rgba(24,38,28,.96);
+    color: #fff;
+    border-color: rgba(132,225,132,.14);
+  }
+
+  /* Legend text itself is black in light mode. */
+  .chart-legend,
+  .chart-legend span {
+    color: #000;
+  }
+
+  :root[data-theme="dark"] .chart-legend,
+  :root[data-theme="dark"] .chart-legend span {
+    color: #fff;
+  }
+
+  /* CHF and Années share exactly the same typographic treatment. */
+  .chart-unit-label,
+  .chart-axis-unit-x {
+    font-size: 13px !important;
+    font-weight: 850 !important;
+    letter-spacing: 0;
+  }
+}
