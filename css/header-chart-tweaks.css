@@ -84,3 +84,66 @@
     white-space: normal;
   }
 }
+
+@media (max-width: 640px) {
+  .chart-card {
+    padding: 20px 16px 14px;
+  }
+
+  .chart-legend {
+    gap: 16px;
+    margin: 14px 0 4px;
+    font-size: .76rem;
+    white-space: nowrap;
+  }
+
+  .legend-swatch {
+    width: 24px;
+  }
+
+  .portfolio-chart {
+    min-height: 310px;
+  }
+
+  .chart-axis-label {
+    font-size: 11px;
+  }
+
+  .chart-unit-label {
+    font-size: 12px;
+  }
+
+  .chart-line-portfolio {
+    stroke-width: 3.5;
+  }
+
+  .chart-line-invested {
+    stroke-width: 1.9;
+    stroke-dasharray: 6 7;
+  }
+
+  .chart-mobile-summary-label,
+  .chart-mobile-summary-value {
+    dominant-baseline: alphabetic;
+  }
+
+  .chart-mobile-summary-label {
+    fill: #6d7480;
+    font-size: 14px;
+    font-weight: 750;
+  }
+
+  .chart-mobile-summary-value {
+    fill: #10151d;
+    font-size: 17px;
+    font-weight: 900;
+  }
+
+  :root[data-theme="dark"] .chart-mobile-summary-label {
+    fill: rgba(238,246,239,.68);
+  }
+
+  :root[data-theme="dark"] .chart-mobile-summary-value {
+    fill: #fff;
+  }
+}
