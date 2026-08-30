@@ -133,4 +133,11 @@
     font-weight: 850 !important;
     letter-spacing: 0;
   }
+
+  /* Hero references and values use the same size on mobile. */
+  .hero-stat span:not(.stat-icon),
+  .hero-stat strong {
+    font-size: .92rem !important;
+    line-height: 1.15;
+  }
 }
