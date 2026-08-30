@@ -173,7 +173,7 @@
 
     var ariaNodes = scope.querySelectorAll('[data-i18n-aria-label]');
     for (var j = 0; j < ariaNodes.length; j += 1) {
-      ariaNodes[j].setAttribute('aria-label', t(ariaNodes[j].getAttribute('data-i18n-aria-label'));
+      ariaNodes[j].setAttribute('aria-label', t(ariaNodes[j].getAttribute('data-i18n-aria-label')));
     }
 
     document.documentElement.lang = currentLanguage;
