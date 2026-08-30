@@ -223,15 +223,26 @@
   .strategy-rate {
     min-width: 44px;
     min-height: 26px;
-    margin-top: 8px;
+    margin: 8px auto 0;
     padding: 4px 8px;
     font-size: .78rem;
+    justify-self: center;
+    align-self: end;
+    place-self: end center;
   }
 }
 
 @media (max-width: 640px) {
   .strategy-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .strategy-rate {
+    width: max-content;
+    min-width: 48px;
+    margin-left: auto;
+    margin-right: auto;
+    place-self: end center;
   }
 }
 
