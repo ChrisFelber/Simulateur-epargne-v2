@@ -18,7 +18,8 @@
     var fallbacks = {
       yearsAxis: { fr: 'Années', de: 'Jahre', en: 'Years' },
       year: { fr: 'an', de: 'Jahr', en: 'year' },
-      years: { fr: 'ans', de: 'Jahre', en: 'years' }
+      years: { fr: 'ans', de: 'Jahre', en: 'years' },
+      finalValue: { fr: 'Valeur finale', de: 'Endwert', en: 'Final value' }
     };
     if (window.InvestmentI18n && typeof window.InvestmentI18n.t === 'function') {
       var translated = window.InvestmentI18n.t(key);
@@ -35,6 +36,16 @@
     return String(Math.round(value));
   }
 
+  function formatFullCurrency(value) {
+    var language = document.documentElement.lang || 'fr';
+    var locale = language === 'de' ? 'de-CH' : (language === 'en' ? 'en-CH' : 'fr-CH');
+    return new Intl.NumberFormat(locale, {
+      style: 'currency',
+      currency: 'CHF',
+      maximumFractionDigits: 0
+    }).format(value);
+  }
+
   function getNiceStep(value) {
     if (value <= 0) return 1;
     var exponent = Math.floor(Math.log(value) / Math.LN10);
@@ -48,13 +59,6 @@
     return niceFraction * Math.pow(10, exponent);
   }
 
-  function getNiceYearStep(maxYears) {
-    var rawStep = maxYears / 4;
-    var steps = [1, 2, 5, 10, 20];
-    for (var i = 0; i < steps.length; i += 1) if (steps[i] >= rawStep) return steps[i];
-    return 20;
-  }
-
   function renderChart(svg, simulation) {
     if (!svg || !simulation || !simulation.series || simulation.series.length < 2) return;
 
@@ -62,10 +66,10 @@
     var isMobile = renderedWidth <= 640;
     var isCompactDesktop = renderedWidth > 640 && renderedWidth < 900;
     var width = 800;
-    var height = isMobile ? 380 : 340;
+    var height = isMobile ? 400 : 340;
     var padding;
 
-    if (isMobile) padding = { top: 48, right: 30, bottom: 102, left: 108 };
+    if (isMobile) padding = { top: 38, right: 24, bottom: 118, left: 78 };
     else if (isCompactDesktop) padding = { top: 28, right: 24, bottom: 48, left: 78 };
     else padding = { top: 24, right: 24, bottom: 44, left: 88 };
 
@@ -100,9 +104,9 @@
     var gridGroup = createSvgElement('g', { class: 'chart-grid' });
 
     var unitFontSize = isMobile ? 15 : (isCompactDesktop ? 16 : 18);
-    var unitLabelY = isMobile ? Math.max(18, padding.top - 18) : Math.max(9, padding.top - 16);
+    var unitLabelY = isMobile ? 18 : Math.max(9, padding.top - 16);
     var unitLabel = createSvgElement('text', {
-      x: padding.left - 14,
+      x: padding.left - 10,
       y: unitLabelY,
       'text-anchor': 'end',
       class: 'chart-unit-label'
@@ -115,7 +119,7 @@
       var value = yStep * i;
       var py = y(value);
       gridGroup.appendChild(createSvgElement('line', { x1: padding.left, x2: width - padding.right, y1: py, y2: py, class: 'chart-grid-line' }));
-      var yLabel = createSvgElement('text', { x: padding.left - 14, y: py + 7, 'text-anchor': 'end', class: 'chart-axis-label chart-axis-label-y' });
+      var yLabel = createSvgElement('text', { x: padding.left - 10, y: py + 6, 'text-anchor': 'end', class: 'chart-axis-label chart-axis-label-y' });
       yLabel.textContent = formatCompactCurrency(value);
       gridGroup.appendChild(yLabel);
     }
@@ -123,38 +127,34 @@
     var xAxisY = y(0);
 
     if (isMobile) {
-      var yearStep = getNiceYearStep(maxYears);
-      var year = 0;
-      var xLabelY = height - 58;
-      while (year < maxYears) {
-        if (year !== 0 && maxYears - year < yearStep * 0.6) break;
-        var yearX = x(year);
+      var mobileYears = [0, maxYears / 2, maxYears];
+      var xLabelY = xAxisY + 34;
+      for (i = 0; i < mobileYears.length; i += 1) {
+        var mobileYear = mobileYears[i];
+        var mobileTickX = x(mobileYear);
         gridGroup.appendChild(createSvgElement('line', {
-          x1: yearX,
-          x2: yearX,
+          x1: mobileTickX,
+          x2: mobileTickX,
           y1: xAxisY,
           y2: xAxisY + 8,
           class: 'chart-x-tick'
         }));
-        var mobileXLabel = createSvgElement('text', { x: yearX, y: xLabelY, 'text-anchor': year === 0 ? 'start' : 'middle', class: 'chart-axis-label chart-axis-label-x' });
-        mobileXLabel.textContent = String(year);
+        var mobileXLabel = createSvgElement('text', {
+          x: mobileTickX,
+          y: xLabelY,
+          'text-anchor': i === 0 ? 'start' : (i === mobileYears.length - 1 ? 'end' : 'middle'),
+          class: 'chart-axis-label chart-axis-label-x'
+        });
+        mobileXLabel.textContent = String(Math.round(mobileYear));
         gridGroup.appendChild(mobileXLabel);
-        year += yearStep;
       }
 
-      var finalYearX = x(maxYears);
-      gridGroup.appendChild(createSvgElement('line', {
-        x1: finalYearX,
-        x2: finalYearX,
-        y1: xAxisY,
-        y2: xAxisY + 8,
-        class: 'chart-x-tick'
-      }));
-      var finalXLabel = createSvgElement('text', { x: finalYearX - 2, y: xLabelY, 'text-anchor': 'end', class: 'chart-axis-label chart-axis-label-x' });
-      finalXLabel.textContent = String(Math.round(maxYears));
-      gridGroup.appendChild(finalXLabel);
-
-      var yearsLabel = createSvgElement('text', { x: finalYearX - 2, y: height - 14, 'text-anchor': 'end', class: 'chart-unit-label chart-axis-unit-x' });
+      var yearsLabel = createSvgElement('text', {
+        x: width - padding.right,
+        y: xAxisY + 60,
+        'text-anchor': 'end',
+        class: 'chart-unit-label chart-axis-unit-x'
+      });
       yearsLabel.textContent = t('yearsAxis');
       gridGroup.appendChild(yearsLabel);
     } else {
@@ -191,8 +191,29 @@
     svg.appendChild(createSvgElement('path', { d: areaPath, class: 'chart-area' }));
     svg.appendChild(createSvgElement('path', { d: investedPath, class: 'chart-line chart-line-invested' }));
     svg.appendChild(createSvgElement('path', { d: portfolioPath, class: 'chart-line chart-line-portfolio' }));
-    svg.appendChild(createSvgElement('circle', { cx: x(last.elapsedYears), cy: y(last.portfolioValue), r: 5, class: 'chart-endpoint portfolio-endpoint' }));
-    svg.appendChild(createSvgElement('circle', { cx: x(last.elapsedYears), cy: y(last.investedCapital), r: 4, class: 'chart-endpoint invested-endpoint' }));
+    svg.appendChild(createSvgElement('circle', { cx: x(last.elapsedYears), cy: y(last.portfolioValue), r: isMobile ? 6 : 5, class: 'chart-endpoint portfolio-endpoint' }));
+    svg.appendChild(createSvgElement('circle', { cx: x(last.elapsedYears), cy: y(last.investedCapital), r: isMobile ? 3.5 : 4, class: 'chart-endpoint invested-endpoint' }));
+
+    if (isMobile) {
+      var summaryY = height - 20;
+      var summaryLabel = createSvgElement('text', {
+        x: padding.left,
+        y: summaryY,
+        'text-anchor': 'start',
+        class: 'chart-mobile-summary-label'
+      });
+      summaryLabel.textContent = t('finalValue');
+      svg.appendChild(summaryLabel);
+
+      var summaryValue = createSvgElement('text', {
+        x: width - padding.right,
+        y: summaryY,
+        'text-anchor': 'end',
+        class: 'chart-mobile-summary-value'
+      });
+      summaryValue.textContent = formatFullCurrency(last.portfolioValue);
+      svg.appendChild(summaryValue);
+    }
   }
 
   window.InvestmentChart = Object.freeze({ renderChart: renderChart });
