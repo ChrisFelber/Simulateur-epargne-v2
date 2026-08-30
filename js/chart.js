@@ -58,10 +58,17 @@
   function renderChart(svg, simulation) {
     if (!svg || !simulation || !simulation.series || simulation.series.length < 2) return;
 
-    var isMobile = window.innerWidth <= 640;
+    var renderedWidth = svg.clientWidth || (svg.parentElement && svg.parentElement.clientWidth) || window.innerWidth || 800;
+    var isMobile = renderedWidth <= 640;
+    var isCompactDesktop = renderedWidth > 640 && renderedWidth < 900;
     var width = 800;
     var height = isMobile ? 380 : 340;
-    var padding = isMobile ? { top: 48, right: 30, bottom: 102, left: 118 } : { top: 20, right: 24, bottom: 42, left: 64 };
+    var padding;
+
+    if (isMobile) padding = { top: 48, right: 30, bottom: 102, left: 108 };
+    else if (isCompactDesktop) padding = { top: 28, right: 24, bottom: 48, left: 78 };
+    else padding = { top: 24, right: 24, bottom: 44, left: 88 };
+
     var innerWidth = width - padding.left - padding.right;
     var innerHeight = height - padding.top - padding.bottom;
     var series = simulation.series;
@@ -92,18 +99,23 @@
 
     var gridGroup = createSvgElement('g', { class: 'chart-grid' });
 
-    if (isMobile) {
-      var unitLabel = createSvgElement('text', { x: padding.left - 14, y: padding.top - 25, 'text-anchor': 'end', class: 'chart-unit-label' });
-      unitLabel.textContent = 'CHF';
-      gridGroup.appendChild(unitLabel);
-    }
+    var unitFontSize = isMobile ? 15 : (isCompactDesktop ? 16 : 18);
+    var unitLabel = createSvgElement('text', {
+      x: padding.left - 14,
+      y: Math.max(14, padding.top - 10),
+      'text-anchor': 'end',
+      class: 'chart-unit-label'
+    });
+    unitLabel.textContent = 'CHF';
+    unitLabel.style.fontSize = unitFontSize + 'px';
+    gridGroup.appendChild(unitLabel);
 
     for (i = 0; i <= yTicks; i += 1) {
       var value = yStep * i;
       var py = y(value);
       gridGroup.appendChild(createSvgElement('line', { x1: padding.left, x2: width - padding.right, y1: py, y2: py, class: 'chart-grid-line' }));
       var yLabel = createSvgElement('text', { x: padding.left - 14, y: py + 7, 'text-anchor': 'end', class: 'chart-axis-label chart-axis-label-y' });
-      yLabel.textContent = (isMobile ? '' : 'CHF ') + formatCompactCurrency(value);
+      yLabel.textContent = formatCompactCurrency(value);
       gridGroup.appendChild(yLabel);
     }
 
