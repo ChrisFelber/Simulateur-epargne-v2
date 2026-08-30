@@ -223,12 +223,9 @@
   .strategy-rate {
     min-width: 44px;
     min-height: 26px;
-    margin: 8px auto 0;
+    margin-top: 8px;
     padding: 4px 8px;
     font-size: .78rem;
-    justify-self: center;
-    align-self: end;
-    place-self: end center;
   }
 }
 
@@ -237,12 +234,15 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .strategy-rate {
-    width: max-content;
-    min-width: 48px;
-    margin-left: auto;
-    margin-right: auto;
-    place-self: end center;
+  .strategy-button .strategy-rate {
+    position: absolute !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: 12px !important;
+    margin: 0 !important;
+    transform: translateX(-50%) !important;
+    width: max-content !important;
+    justify-self: auto !important;
   }
 }
 
