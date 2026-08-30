@@ -61,6 +61,26 @@
     font-size: 1.72rem;
     line-height: 1.1;
   }
+
+  /* Desktop chart legend: stronger contrast and more breathing room before the plot. */
+  .chart-legend,
+  .chart-legend span {
+    color: #000 !important;
+  }
+
+  .chart-legend {
+    margin-top: 18px;
+    margin-bottom: 30px;
+  }
+
+  .chart-wrap {
+    padding-top: 4px;
+  }
+
+  :root[data-theme="dark"] .chart-legend,
+  :root[data-theme="dark"] .chart-legend span {
+    color: #fff !important;
+  }
 }
 
 @media (min-width: 1500px) {
@@ -70,6 +90,10 @@
 
   .hero-stat strong {
     font-size: 1.84rem;
+  }
+
+  .chart-legend {
+    margin-bottom: 34px;
   }
 }
 
