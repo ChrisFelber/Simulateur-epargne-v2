@@ -41,6 +41,16 @@
     })} %`;
   }
 
+  function updateRangeFill(input) {
+    if (!input) return;
+    const min = Number(input.min || 0);
+    const max = Number(input.max || 100);
+    const value = Number(input.value || 0);
+    const denominator = max - min;
+    const percent = denominator > 0 ? ((value - min) / denominator) * 100 : 0;
+    input.style.setProperty('--range-progress', `${Math.max(0, Math.min(100, percent))}%`);
+  }
+
   function getElements() {
     return {
       initialCapital: document.getElementById('initial-capital'),
@@ -119,6 +129,10 @@
     }
   }
 
+  function refreshRangeFills(elements) {
+    [elements.initialCapital, elements.contribution, elements.annualReturn, elements.durationYears].forEach(updateRangeFill);
+  }
+
   function refresh(elements) {
     if (!window.InvestmentSimulation || typeof window.InvestmentSimulation.simulateInvestment !== 'function') {
       console.error('InvestmentSimulation is unavailable.');
@@ -129,6 +143,7 @@
       const inputs = readInputs(elements);
       const result = window.InvestmentSimulation.simulateInvestment(inputs);
       updateOutputs(elements, inputs, result);
+      refreshRangeFills(elements);
 
       if (window.InvestmentChart && typeof window.InvestmentChart.renderChart === 'function' && elements.portfolioChart) {
         try {
@@ -163,6 +178,7 @@
     state.selectedStrategy = strategyKey;
     elements.annualReturn.value = String(strategy.annualReturn * 100);
     updateStrategySelection(elements);
+    updateRangeFill(elements.annualReturn);
     refresh(elements);
   }
 
@@ -175,12 +191,16 @@
     }
 
     [elements.initialCapital, elements.contribution, elements.durationYears].forEach((input) => {
-      input.addEventListener('input', () => refresh(elements));
+      input.addEventListener('input', () => {
+        updateRangeFill(input);
+        refresh(elements);
+      });
     });
 
     elements.annualReturn.addEventListener('input', () => {
       state.selectedStrategy = null;
       updateStrategySelection(elements);
+      updateRangeFill(elements.annualReturn);
       refresh(elements);
     });
 
@@ -203,6 +223,7 @@
 
     updateLanguage(elements);
     updateStrategySelection(elements);
+    refreshRangeFills(elements);
     refresh(elements);
   }
 
