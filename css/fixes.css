@@ -108,8 +108,8 @@
   .brand-block .intro {
     max-width: 700px;
     margin-top: 8px;
-    font-size: 1rem;
-    line-height: 1.45;
+    font-size: 1.08rem;
+    line-height: 1.5;
   }
 
   .simulator-stack {
@@ -149,11 +149,11 @@
   }
 
   .hero-kicker {
-    font-size: .95rem;
+    font-size: 1.05rem;
   }
 
   .hero-value {
-    font-size: clamp(3.5rem, 4.6vw, 5.1rem);
+    font-size: clamp(3.7rem, 4.8vw, 5.35rem);
     line-height: .94;
   }
 
@@ -164,11 +164,11 @@
   }
 
   .hero-stat span {
-    font-size: .82rem;
+    font-size: .92rem;
   }
 
   .hero-stat strong {
-    font-size: 1.05rem;
+    font-size: 1.18rem;
   }
 
   .card,
@@ -180,17 +180,35 @@
 
   .chart-card h2,
   .strategies-card h2 {
-    font-size: 1.4rem;
+    font-size: 1.58rem;
+    line-height: 1.2;
   }
 
-  .card-label,
-  .chart-legend,
-  .control-heading label,
-  .control-heading output,
-  .frequency-button,
-  .strategy-button strong,
-  .strategy-rate {
-    font-size: .9rem;
+  .card-label {
+    font-size: .86rem;
+    letter-spacing: .08em;
+  }
+
+  .chart-legend {
+    font-size: .98rem;
+  }
+
+  .chart-axis-label,
+  .chart-unit-label {
+    font-size: 14px;
+  }
+
+  .control-heading label {
+    font-size: 1.02rem;
+    line-height: 1.25;
+  }
+
+  .control-heading output {
+    font-size: 1rem;
+  }
+
+  .frequency-button {
+    font-size: .92rem;
   }
 
   .chart-wrap {
@@ -229,17 +247,22 @@
     padding: 14px 10px;
   }
 
+  .strategy-button strong {
+    font-size: 1rem;
+  }
+
   .strategy-button small {
-    font-size: .72rem;
-    line-height: 1.3;
+    font-size: .8rem;
+    line-height: 1.35;
   }
 
   .strategy-rate {
     margin-top: 8px;
+    font-size: .9rem;
   }
 
   .trust-panel p {
-    font-size: .82rem;
+    font-size: .9rem;
   }
 }
 
@@ -255,6 +278,31 @@
 
   .portfolio-chart {
     min-height: 420px;
+  }
+
+  .brand-block .intro {
+    font-size: 1.12rem;
+  }
+
+  .chart-card h2,
+  .strategies-card h2 {
+    font-size: 1.68rem;
+  }
+
+  .control-heading label {
+    font-size: 1.08rem;
+  }
+
+  .control-heading output {
+    font-size: 1.04rem;
+  }
+
+  .strategy-button strong {
+    font-size: 1.04rem;
+  }
+
+  .strategy-button small {
+    font-size: .84rem;
   }
 }
 
