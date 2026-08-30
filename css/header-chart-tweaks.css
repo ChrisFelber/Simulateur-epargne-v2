@@ -19,6 +19,17 @@
   vector-effect: non-scaling-stroke;
 }
 
+/* Chart values and units: use black for stronger readability. */
+.chart-axis-label,
+.chart-unit-label {
+  fill: #000 !important;
+}
+
+:root[data-theme="dark"] .chart-axis-label,
+:root[data-theme="dark"] .chart-unit-label {
+  fill: #fff !important;
+}
+
 :root[data-theme="dark"] .chart-x-tick {
   stroke: rgba(132,225,132,.28);
 }
@@ -29,12 +40,36 @@
     align-items: flex-end;
     gap: 22px;
     max-width: none;
+    flex-wrap: nowrap;
   }
 
   .brand-block .intro {
-    max-width: 910px;
+    max-width: none;
     margin: 0 0 7px 0;
     line-height: 1.35;
+    white-space: nowrap;
+    flex: 0 1 auto;
+  }
+
+  /* Hero summary stats: larger to match the overall desktop scale. */
+  .hero-stat span:not(.stat-icon) {
+    font-size: 1.34rem;
+    line-height: 1.2;
+  }
+
+  .hero-stat strong {
+    font-size: 1.72rem;
+    line-height: 1.1;
+  }
+}
+
+@media (min-width: 1500px) {
+  .hero-stat span:not(.stat-icon) {
+    font-size: 1.42rem;
+  }
+
+  .hero-stat strong {
+    font-size: 1.84rem;
   }
 }
 
@@ -46,5 +81,6 @@
   .brand-block .intro {
     margin-left: 0;
     margin-top: 10px;
+    white-space: normal;
   }
 }
